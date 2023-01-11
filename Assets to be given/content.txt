@@ -1,0 +1,606 @@
+Bikin structure Folder
+
+api
+!--- google_sign_in.dart
+models
+|--- album.dart
+|--- film.dart
+|--- user.dart
+views
+|--- pages
+       |--- detail.dart
+       |--- home.dart
+       |--- insert.dart
+       |--- login.dart
+       |--- register.dart
+
+==============
+| login.dart |
+==============
+
+import 'package:flutter/material.dart';
+
+
+class LoginPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return LoginPageState();
+  }
+
+}
+
+class LoginPageState extends State<LoginPage>{
+
+  
+  var ctrlUsername = TextEditingController();
+  var ctrlPassword = TextEditingController();
+
+  void _onPressedLogin(BuildContext context) async {
+    if(ctrlUsername.text == "" || ctrlPassword.text == ""){
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Username and Password must not be Empty')
+        )
+      );
+    } else{
+
+      // Login auth 
+      
+      // Simpan di shared pref
+
+    }
+  }
+
+  Future _onPressedGmail(BuildContext context) async{
+
+    // Google Sign In
+
+  }
+
+  void _onPressedRegister(BuildContext context){
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (builder){
+      return RegisterPage();
+    }));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Login Page'
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Login',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 20
+              ),
+              child: TextField(
+                controller: ctrlUsername,
+                decoration: const InputDecoration(  
+                  border: OutlineInputBorder(),  
+                  labelText: 'Username',  
+                  hintText: 'Enter Username',  
+                ),  
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: TextField(
+                controller: ctrlPassword,
+                obscureText: true,  
+                decoration: const InputDecoration(  
+                  border: OutlineInputBorder(),  
+                  labelText: 'Password',  
+                  hintText: 'Enter Password',  
+                ),  
+              ),
+            ),
+
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: ElevatedButton(
+                child: const Text('Login'),
+                onPressed: () => _onPressedLogin(context),
+              )
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 5
+              ),
+              child: ElevatedButton(
+                child: const Text('Login With GMail'),
+                onPressed: () => _onPressedGmail(context),
+              )
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: TextButton(
+                onPressed: () => _onPressedRegister(context),
+                child: const Text('Didn\'t have an account, register here!'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+=================
+| register.dart |
+=================
+
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+
+class RegisterPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return RegisterPageState();
+  }
+}
+
+class RegisterPageState extends State<RegisterPage>{
+
+  var ctrlUsername = TextEditingController();
+  var ctrlPassword = TextEditingController();
+
+  void _onPressedLogin(BuildContext context){
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (builder){
+      return LoginPage();
+    }));
+  }
+
+  void _onPressed(BuildContext context) async {
+    if(ctrlUsername.text == "" || ctrlPassword.text == ""){
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Username and Password must not be Empty')
+        )
+      );
+    } else{
+      
+      // Register Here
+
+      // Go to Login Page
+
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Register Page'
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Register',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 20
+              ),
+              child: TextField(
+                controller: ctrlUsername,
+                decoration: const InputDecoration(  
+                  border: OutlineInputBorder(),  
+                  labelText: 'Username',  
+                  hintText: 'Enter Username',  
+                ),  
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: TextField(
+                controller: ctrlPassword,
+                obscureText: true,  
+                decoration: const InputDecoration(  
+                  border: OutlineInputBorder(),  
+                  labelText: 'Password',  
+                  hintText: 'Enter Password',  
+                ),  
+              ),
+            ),
+
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: ElevatedButton(
+                child: const Text('Register'),
+                onPressed: () => _onPressed(context),
+              )
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: TextButton(
+                onPressed: () => _onPressedLogin(context),
+                child: const Text('Already have an account, login here!'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+=============
+| home.dart |
+=============
+
+import 'package:flutter/material.dart';
+
+class HomePage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return HomePageState();
+  }
+}
+
+class HomePageState extends State<HomePage>{
+
+  @override
+  void initState() {
+    super.initState();
+    
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Home Page'
+        ),
+        actions: [
+          PopupMenuButton(
+            onSelected: (value) async {
+
+              var navigator = Navigator.of(context);
+
+              if(value == "insert menu"){
+                navigator.push(MaterialPageRoute(builder: (builder){
+                  return InsertPage();
+                }));
+              }
+              else if(value == "logout"){
+                
+                // remove token from shared pref
+
+                // google Sign In Logout
+
+                navigator.pushReplacement(MaterialPageRoute(builder: (builder){
+                  return LoginPage();
+                })); 
+              }
+            },
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: "insert menu",
+                child: Text('Insert Film'),
+              ),
+              const PopupMenuItem(
+                value: "logout",
+                child: Text('Logout'),
+              ),
+            ],
+          )
+        ],
+      ),
+      body: const Text('Home')
+    );
+  }
+}
+
+===============
+| insert.dart |
+===============
+
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+
+class InsertPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return InsertPageState();
+  }
+}
+
+class InsertPageState extends State<InsertPage>{
+
+  var filmNameController = TextEditingController();
+  var filmGenreController = TextEditingController();
+  var filmDescController = TextEditingController();
+  File? image;
+
+  void _insertOnPressed(BuildContext context) async{
+    if(filmNameController.text == "" || filmGenreController.text == "" || 
+        filmDescController.text == "" || image == null){
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('All Fields must be filled!')
+            )
+          );
+    } 
+    else{
+
+      // insert film to DB and then back to home
+
+       Navigator.push(context, MaterialPageRoute(builder: (builder){
+        return HomePage();
+      }));
+
+    }
+  }
+
+  Future pickImage() async{
+
+    // insert image from gallery
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text(
+          'Insert Film Page'
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Insert Film',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 20
+              ),
+              child: TextField(
+                controller: filmNameController,
+                decoration: const InputDecoration(  
+                  border: OutlineInputBorder(),  
+                  labelText: 'Film Name',  
+                  hintText: 'Enter Film Name',  
+                ),  
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: TextField(
+                controller: filmGenreController,
+                decoration: const InputDecoration(  
+                  border: OutlineInputBorder(),  
+                  labelText: 'Film Genre',  
+                  hintText: 'Enter Film Genre',  
+                ),  
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: TextField(
+                controller: filmDescController,
+                decoration: const InputDecoration(  
+                  border: OutlineInputBorder(),  
+                  labelText: 'Film Desc',  
+                  hintText: 'Enter Film Description',  
+                ),  
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: image != null ? Image.file(image!, width: 100, height: 100,) : const Text('Image Not Picked')
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: ElevatedButton(
+                child: const Text('Pick Image'),
+                onPressed: () => pickImage(),
+              )
+            ),
+
+            Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 10
+              ),
+              child: ElevatedButton(
+                child: const Text('Insert'),
+                onPressed: () => _insertOnPressed(context),
+              )
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+===============
+| detail.dart |
+===============
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+
+class DetailPage extends StatefulWidget{
+
+  int filmId;
+  String filmName;
+  String filmGenre;
+  String filmDesc;
+
+  DetailPage({super.key, required this.filmId, required this.filmName, required this.filmGenre, required this.filmDesc});
+
+  @override
+  State<StatefulWidget> createState() {
+    return DetailPageState();
+  }
+
+}
+
+class DetailPageState extends State<DetailPage>{
+
+  var filmNameController = TextEditingController();
+  var filmGenreController = TextEditingController();
+  var filmDescController = TextEditingController();
+  File? image;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // fetch film
+
+    filmNameController.text = widget.filmName;
+    filmGenreController.text = widget.filmGenre;
+    filmDescController.text = widget.filmDesc;
+  }
+
+  void _updateOnPressed(BuildContext context, int id) async{
+    if(filmNameController.text == "" || filmGenreController.text == "" || 
+        filmDescController.text == "" || image == null){
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('All Fields must be filled!')
+            )
+          );
+    } 
+    else{
+
+      // UPDATE FILM HERE
+
+      Navigator.push(context, MaterialPageRoute(builder: (builder){
+        return HomePage();
+      }));
+    }
+  }
+
+  Future pickImage() async{
+    
+    // insert image from gallery
+
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text(
+          'Detail and Update Page'
+        ),
+      ),
+      body: const Text('detail')
+    );
+  }
+}
+
+=============
+| main.dart |
+=============
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(App());
+}
+
+class App extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
+      home: HomePage(),
+    );
+  }
+}
+
+

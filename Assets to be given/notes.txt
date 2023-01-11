@@ -1,0 +1,37 @@
+npx express-generator --view=ejs
+npm install
+npm i nodemon
+
+mysql
+===========
+npm i mysql
+
+Upload File
+===========
+npm install multer
+
+Handle cors
+===========
+npm install cors --save
+
+in app.js
+---------
+const cors = require('cors');
+app.use(cors());
+
+
+
+Flutter
+=========
+> Google Sign In
+1. Buat project di console.google.cloud.com
+2. Cari OAuth Consent Screen (Design)
+3. Masukin Library Google Sign In ke pubspec.yaml
+4. Generate Keystore : https://docs.flutter.dev/deployment/android
+5. Keystore masukin ke folder App, atur signingConfigs dan buildTypes di build.gradle
+6. Buat credentials OAuth Client Id di console google
+
+keytool -genkey -v -keystore %userprofile%\keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias keystore
+
+pass mautauaja7
+
